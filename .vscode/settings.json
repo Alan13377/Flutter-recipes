@@ -1,0 +1,9 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "dart.customDevTools": {},
+  "dart.devToolsBrowser": "default",
+  "dart.devToolsLocation": "external"
+}
