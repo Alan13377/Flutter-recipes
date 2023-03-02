@@ -94,8 +94,6 @@ class Card3 extends StatelessWidget {
               ],
             ),
           ),
-          // TODO: Add Container, Column, Icon and Text
-          // TODO: Add Center widget with Chip widget children
         ]),
       ),
     );
