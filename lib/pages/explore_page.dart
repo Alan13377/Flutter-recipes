@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fooderlich/api/mock_fooderlich_service.dart';
-import 'package:fooderlich/widgets/friend_post_listview.dart';
-import 'package:fooderlich/widgets/today_recipe_list_view.dart';
+import 'package:fooderlich/widgets/Explorer_page/friend_post_listview.dart';
+import 'package:fooderlich/widgets/Explorer_page/today_recipe_list_view.dart';
 
 //*Pagina que contiene el ListView Principal
 class ExplorerPage extends StatelessWidget {

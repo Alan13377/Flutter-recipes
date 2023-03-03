@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooderlich/models/post.dart';
-import 'package:fooderlich/widgets/circle_image.dart';
+import 'package:fooderlich/widgets/Explorer_page/circle_image.dart';
 
 //*Custom Tile para los Post
 class FriendPostTile extends StatelessWidget {

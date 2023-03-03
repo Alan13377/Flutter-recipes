@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fooderlich/models/explore_recipe.dart';
 import 'package:fooderlich/utils/theme.dart';
-import 'package:fooderlich/widgets/author_card.dart';
+import 'package:fooderlich/widgets/Explorer_page/author_card.dart';
 
 class Card2 extends StatelessWidget {
   final ExploreRecipe recipe;

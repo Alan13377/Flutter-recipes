@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fooderlich/models/explore_recipe.dart';
 import 'package:fooderlich/pages/explore_page.dart';
+import 'package:fooderlich/pages/recipes_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   //*Lista de Paginas
   List pages = <Widget>[
     ExplorerPage(),
+    RecipesPage(),
   ];
 
   @override
@@ -42,15 +44,15 @@ class _HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.card_giftcard),
-            label: "Card",
+            label: "Explore",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.card_giftcard),
-            label: "Card2",
+            label: "Recipes",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.card_giftcard),
-            label: "Card3",
+            label: "Tu Buy",
           ),
         ],
       ),

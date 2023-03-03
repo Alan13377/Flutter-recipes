@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooderlich/models/post.dart';
-import 'package:fooderlich/widgets/friend_post_tile.dart';
+import 'package:fooderlich/widgets/Explorer_page/friend_post_tile.dart';
 
 class FriendPostListView extends StatelessWidget {
   final List<Post> friendsPost;

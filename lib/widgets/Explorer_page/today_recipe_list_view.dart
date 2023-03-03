@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fooderlich/models/explore_recipe.dart';
-import 'package:fooderlich/widgets/card1.dart';
-import 'package:fooderlich/widgets/card2.dart';
-import 'package:fooderlich/widgets/card3.dart';
+import 'package:fooderlich/widgets/Explorer_page/card1.dart';
+import 'package:fooderlich/widgets/Explorer_page/card2.dart';
+import 'package:fooderlich/widgets/Explorer_page/card3.dart';
 
 //*Clase que retorna un ListView de las recetas del dia
 class TodayRecipeListView extends StatelessWidget {
