@@ -4,11 +4,30 @@ import 'package:fooderlich/widgets/Explorer_page/friend_post_listview.dart';
 import 'package:fooderlich/widgets/Explorer_page/today_recipe_list_view.dart';
 
 //*Pagina que contiene el ListView Principal
-class ExplorerPage extends StatelessWidget {
+class ExplorerPage extends StatefulWidget {
+  const ExplorerPage({super.key});
+
+  @override
+  State<ExplorerPage> createState() => _ExplorerPageState();
+}
+
+class _ExplorerPageState extends State<ExplorerPage> {
   //*Instancia de la Clase MockFooderlichService
   final mockService = MockFooderlichService();
+  late ScrollController controller;
 
-  ExplorerPage({super.key});
+  @override
+  void initState() {
+    super.initState();
+    controller = ScrollController();
+    controller.addListener(scrollListener);
+  }
+
+  @override
+  void dispose() {
+    controller.removeListener(scrollListener);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +38,7 @@ class ExplorerPage extends StatelessWidget {
           //*ListView Anidado
           //*ListView de scroll vertical, el cual contiene otro ListView de scroll horizontal
           return ListView(
+            controller: controller,
             scrollDirection: Axis.vertical,
             children: [
               //*ListView Recetas del dia
@@ -37,5 +57,18 @@ class ExplorerPage extends StatelessWidget {
         }
       },
     );
+  }
+
+  void scrollListener() {
+    // 1
+    if (controller.offset >= controller.position.maxScrollExtent &&
+        !controller.position.outOfRange) {
+      print('i am at the bottom!');
+    }
+    // 2
+    if (controller.offset <= controller.position.minScrollExtent &&
+        !controller.position.outOfRange) {
+      print('i am at the top!');
+    }
   }
 }
