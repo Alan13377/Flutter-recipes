@@ -4,9 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:fooderlich/models/explore_data.dart';
 import 'package:fooderlich/models/explore_recipe.dart';
 import 'package:fooderlich/models/post.dart';
-import 'package:fooderlich/models/sample_recipe.dart';
+import 'package:fooderlich/models/simple_recipe.dart';
 
 class MockFooderlichService {
+  //*Metodo que devuelve dos listas: recetas para explorar y publicaciones de amigos
   Future<ExploreData> getExplorerData() async {
     final todayRecipes = await _getTodayRecipes();
     final friendsPost = await _getFriendFeed();
@@ -14,7 +15,7 @@ class MockFooderlichService {
     return ExploreData(todayRecipes, friendsPost);
   }
 
-  //*Funcion que retornara las tarjetas de las recetas
+  //*Funcion que retornara las recetas mas populares del dia
   Future<List<ExploreRecipe>> _getTodayRecipes() async {
     //*Simular el tiempo de respuesta de una llamada a una api
     await Future.delayed(const Duration(milliseconds: 1000));
@@ -38,7 +39,7 @@ class MockFooderlichService {
     }
   }
 
-  //*Funcion que retornara las los comentarios de las personas
+  //*Funcion que retornara las recetas de tus amigos
   Future<List<Post>> _getFriendFeed() async {
     await Future.delayed(const Duration(milliseconds: 1000));
 
@@ -58,7 +59,7 @@ class MockFooderlichService {
     }
   }
 
-  //* Obtener las recetas
+  //* Retorna una lista de recetas
   Future<List<SimpleRecipe>> getRecipes() async {
     await Future.delayed(const Duration(milliseconds: 1000));
 

@@ -1,3 +1,4 @@
+//*Mmustra la dificultad de la receta
 class SimpleRecipe {
   String id;
   String dishImage;

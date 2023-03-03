@@ -1,3 +1,4 @@
+//*Modelo que dara las intrucciones para cocinar la receta
 class Instruction {
   String imageUrl;
   String description;

@@ -8,6 +8,8 @@ class RecipeCardType {
   static const card3 = "card3";
 }
 
+//* Modelo que mostrara todos los detalles de una receta
+//*Contiene los ingredientes, las intrucciones, duracion etc
 class ExploreRecipe {
   String id;
   String cardType;

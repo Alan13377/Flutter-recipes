@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/widgets/card1.dart';
-import 'package:fooderlich/widgets/card2.dart';
-import 'package:fooderlich/widgets/card3.dart';
+import 'package:fooderlich/models/explore_recipe.dart';
+import 'package:fooderlich/pages/explore_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,11 +12,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   //*Pagina inicial
   int selectedIndex = 0;
+  late ExploreRecipe recipe;
   //*Lista de Paginas
   List pages = <Widget>[
-    const Card1(),
-    const Card2(),
-    const Card3(),
+    ExplorerPage(),
   ];
 
   @override

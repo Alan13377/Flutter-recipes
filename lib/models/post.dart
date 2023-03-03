@@ -1,3 +1,4 @@
+//*Modelo para describir una publicacion de un amigo
 class Post {
   String id;
   String profileImageUrl;

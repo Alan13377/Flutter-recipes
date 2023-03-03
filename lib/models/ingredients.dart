@@ -1,3 +1,4 @@
+//*Modelo que mostrara los ingredientes de la receta
 class Ingredients {
   String imageUrl;
   String title;
