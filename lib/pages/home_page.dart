@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fooderlich/models/explore_recipe.dart';
+import 'package:fooderlich/models/tab_manager.dart';
 import 'package:fooderlich/pages/explore_page.dart';
+import 'package:fooderlich/pages/grocery_page.dart';
 import 'package:fooderlich/pages/recipes_page.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   //*Pagina inicial
-  int selectedIndex = 0;
+  // int selectedIndex = 0;
   late ExploreRecipe recipe;
   //*Lista de Paginas
   List pages = <Widget>[
-    ExplorerPage(),
+    const ExplorerPage(),
     RecipesPage(),
+    const GroceryPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    final tabManager = ref.watch(tabManagerProvider);
     final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -33,14 +37,17 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
 
-      //*Renderizamos las paginas segun el index
-      body: pages[selectedIndex],
+      //*Renderizamos las paginas segun el index del arreglo pages
+      body: pages[tabManager.selectedIndex],
 
       //*Nvegacion
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: theme.textSelectionTheme.selectionColor,
-        currentIndex: selectedIndex,
-        onTap: navigateTo,
+
+        //*Pagina Actual
+        currentIndex: tabManager.selectedIndex,
+        //*Funcion para navegar
+        onTap: (index) => tabManager.navigateTo(index),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.card_giftcard),
@@ -60,9 +67,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   //*Funcion de navegacion
-  void navigateTo(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
-  }
+  // void navigateTo(int index) {
+  //   setState(() {
+  //     selectedIndex = index;
+  //   });
+  // }
 }

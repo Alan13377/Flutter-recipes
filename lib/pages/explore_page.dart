@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fooderlich/api/mock_fooderlich_service.dart';
 import 'package:fooderlich/widgets/Explorer_page/friend_post_listview.dart';
@@ -63,12 +64,16 @@ class _ExplorerPageState extends State<ExplorerPage> {
     // 1
     if (controller.offset >= controller.position.maxScrollExtent &&
         !controller.position.outOfRange) {
-      print('i am at the bottom!');
+      if (kDebugMode) {
+        print('i am at the bottom!');
+      }
     }
     // 2
     if (controller.offset <= controller.position.minScrollExtent &&
         !controller.position.outOfRange) {
-      print('i am at the top!');
+      if (kDebugMode) {
+        print('i am at the top!');
+      }
     }
   }
 }
