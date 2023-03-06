@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 enum Importance {
   low,
   medium,
-  hight,
+  high,
 }
 
 class GroceryItem {

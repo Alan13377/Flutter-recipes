@@ -18,7 +18,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   // int selectedIndex = 0;
   late ExploreRecipe recipe;
   //*Lista de Paginas
-  List pages = <Widget>[
+  List<Widget> pages = <Widget>[
     const ExplorerPage(),
     RecipesPage(),
     const GroceryPage(),
@@ -38,7 +38,11 @@ class _HomePageState extends ConsumerState<HomePage> {
       ),
 
       //*Renderizamos las paginas segun el index del arreglo pages
-      body: pages[tabManager.selectedIndex],
+      //*Permite conservar el estado al cambiar entre paginas
+      body: IndexedStack(
+        index: tabManager.selectedIndex,
+        children: pages,
+      ),
 
       //*Nvegacion
       bottomNavigationBar: BottomNavigationBar(

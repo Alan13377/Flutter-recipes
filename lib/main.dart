@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     //? Variable que define el tema
     final theme = FooderlichTheme.light();
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Fooderlich',
       theme: theme,
       home: const HomePage(),

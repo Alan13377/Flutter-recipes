@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fooderlich/models/grocery_item_model.dart';
 
-class GrooverManager extends ChangeNotifier {
+class GroceryManager extends ChangeNotifier {
   final _groceryItems = <GroceryItem>[];
 
   List<GroceryItem> get groceryItems => List.unmodifiable(
@@ -31,4 +31,5 @@ class GrooverManager extends ChangeNotifier {
   }
 }
 
-final grooveManagerProvider = ChangeNotifierProvider((ref) => GrooverManager());
+final groceryManagerProvider =
+    ChangeNotifierProvider((ref) => GroceryManager());
