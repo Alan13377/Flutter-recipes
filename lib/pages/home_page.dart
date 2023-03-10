@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fooderlich/models/explore_recipe.dart';
-import 'package:fooderlich/models/tab_manager.dart';
+import 'package:fooderlich/models/app_state_manager.dart';
 import 'package:fooderlich/pages/explore_page.dart';
 import 'package:fooderlich/pages/grocery_page.dart';
 import 'package:fooderlich/pages/recipes_page.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends ConsumerStatefulWidget {
-  const HomePage({super.key});
+  //*Index actual
+  final int currentIndex;
+  const HomePage({super.key, required this.currentIndex});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _HomePageState();
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  //*Pagina inicial
-  // int selectedIndex = 0;
-  late ExploreRecipe recipe;
   //*Lista de Paginas
   List<Widget> pages = <Widget>[
     const ExplorerPage(),
@@ -26,44 +25,56 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final tabManager = ref.watch(tabManagerProvider);
+    final tabManager = ref.watch(appStateManagerProvider);
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: Text(
           'Fooderlich',
           style: theme.textTheme.titleLarge,
         ),
+        actions: [
+          profileButton(widget.currentIndex),
+        ],
       ),
 
-      //*Renderizamos las paginas segun el index del arreglo pages
-      //*Permite conservar el estado al cambiar entre paginas
+      //*Renderizamos el body segun el indice del arreglo
+      //*IndexStack permite conservar el estado al cambiar entre paginas
       body: IndexedStack(
-        index: tabManager.selectedIndex,
+        index: widget.currentIndex,
         children: pages,
       ),
 
-      //*Nvegacion
+      //*Navegacion
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: theme.textSelectionTheme.selectionColor,
+        //*Index Actual
+        currentIndex: widget.currentIndex,
+        onTap: (index) {
+          //*Actualiza la pestaña que el usuario selecciono
+          tabManager.goToTab(index);
 
-        //*Pagina Actual
-        currentIndex: tabManager.selectedIndex,
-        //*Funcion para navegar
-        onTap: (index) => tabManager.navigateTo(index),
+          //*Navegacion segun la pestaña seleccionada
+          //*GoRouter
+          context.goNamed(
+            "home",
+            params: {
+              "tab": "$index",
+            },
+          );
+        },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: "Explore",
+            icon: Icon(Icons.explore),
+            label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: "Recipes",
+            icon: Icon(Icons.book),
+            label: 'Recipes',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: "Tu Buy",
+            icon: Icon(Icons.list),
+            label: 'To Buy',
           ),
         ],
       ),
@@ -76,4 +87,26 @@ class _HomePageState extends ConsumerState<HomePage> {
   //     selectedIndex = index;
   //   });
   // }
+
+  Widget profileButton(int currentTab) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 16.0),
+      child: GestureDetector(
+        child: const CircleAvatar(
+          backgroundColor: Colors.transparent,
+          backgroundImage: AssetImage(
+            'assets/profile_pics/person_stef.jpeg',
+          ),
+        ),
+        onTap: () {
+          context.goNamed(
+            'profile',
+            params: {
+              'tab': '$currentTab',
+            },
+          );
+        },
+      ),
+    );
+  }
 }

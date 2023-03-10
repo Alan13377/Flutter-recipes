@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fooderlich/models/app_state_manager.dart';
 import 'package:fooderlich/models/tab_manager.dart';
+import 'package:go_router/go_router.dart';
 
 class EmptyGroceryPage extends ConsumerWidget {
   const EmptyGroceryPage({super.key});
@@ -42,7 +44,14 @@ class EmptyGroceryPage extends ConsumerWidget {
               ),
               color: Colors.green,
               onPressed: () {
-                providerTab.goToRecipes();
+                const index = FooderlichTab.recipes;
+                //*Con GoRouter navegamos al indice 1
+                context.goNamed(
+                  "home",
+                  params: {
+                    "tab": "$index",
+                  },
+                );
               },
               child: const Text(
                 "Browse Recipes",

@@ -3,20 +3,25 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fooderlich/models/grocery_item_model.dart';
 import 'package:fooderlich/widgets/grocery_tile.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
+
+import '../models/app_state_manager.dart';
 
 class GroceryItemPage extends ConsumerStatefulWidget {
   final Function(GroceryItem) onCreate;
   final Function(GroceryItem) onUpdate;
   final GroceryItem? originalItem;
   final bool isUpdating;
+  final int index;
   const GroceryItemPage({
+    super.key,
     required this.onCreate,
     required this.onUpdate,
     this.originalItem,
-    super.key,
+    this.index = -1,
   }) : isUpdating = (originalItem != null);
   //*Si isUpdating es verdadero, orignalItem es diferente a null
 
@@ -97,6 +102,13 @@ class _GroceryItemPageState extends ConsumerState<GroceryItemPage> {
               } else {
                 widget.onCreate(groceryItem);
               }
+
+              context.goNamed(
+                'home',
+                params: {
+                  'tab': '${FooderlichTab.toBuy}',
+                },
+              );
             },
           )
         ],
